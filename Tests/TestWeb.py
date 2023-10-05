@@ -1,5 +1,4 @@
 import unittest
-from http import client
 
 import app
 
