@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artist Info</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/style.css" />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-</head>
-<body>
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <h1>Here is the Artist Info</h1>
+      <h1>Here is the Artist Info</h1>
     </header>
-    
+
     <main>
-        
-        <h2>This is your Artist real name:  <Strong>{{artistName}}</Strong></h2>
-    
+      <h2>
+        <strong>Stage Name:{{spotify_information.Name}}</strong>
+      </h2>
+
+      <h2>
+        This is your Artist information:
+        <br />
+        This is your Artist real name:
+        <strong>{{musicbrainz_information}}</strong>
+
+        <p><img src="{{spotify_information.picture}}" /></p>
+        <strong>Followers:{{spotify_information.followers}}</strong>
+        <p>Albums</p>
+        <ul>
+          {%for album in spotify_information.albums%}
+          <li>{{album.album_name}} <img src="{{album.image}}" /></li>
+          {%endfor%}
+        </ul>
+      </h2>
     </main>
-
-
-
-</body>
+  </body>
 </html>
