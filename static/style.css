@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #F0F0F2;
+}
+
+header{
+    padding:16px ;
+    display: flexbox;
+    text-align: center;
+    justify-content: center;
+    background-color: #7C8EA6;
+}
+
+.list {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    background-color: #7C8EA6;
+}
+
+
+main{
+    padding: 50px;
+    display: flexbox;
+    justify-content: center;
+    text-align: center;
+    color: #D7D7D9 ;
+    background-color: #353440 ;
+}
+
+.getData {
+    padding: 19px;
+
+}
