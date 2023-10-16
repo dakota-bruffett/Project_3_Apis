@@ -15,14 +15,15 @@ def get_artist_info():
 
     returnUser = main(artist)
     if returnUser == None:
-         return render_template('artist.html', artistName= 'No artist found.')
+         return render_template('artist.html', artistName= 'No info found.')
     else:
-         return render_template('artist.html', artistName= returnUser) # render our data, and send it to the html file to display.
-    
+         return render_template('artist.html', artistName= returnUser[0], artistCountry = returnUser[1], artistCity = returnUser[2],
+                                artistGender = returnUser[3],  artistBirth = returnUser[4], artistMusic = returnUser[5] ) # render our data, and send it to the html file to display.
 
 
 
-if __main__ == '__main__': # Main not nname
+
+if __name__ == '__main__': # Main not nname
     app.run()
 
 
