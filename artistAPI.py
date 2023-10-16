@@ -26,6 +26,8 @@ def extract_artist_info(jsonData):
     if jsonData == None:
         return None
     else:
+        BioList.clear()
+
         # data : Getting all the data for the Bio and save it in a list.
         realName = jsonData['artists'][0]['aliases'][0]['sort-name']
         Artist_country = jsonData['artists'][0]['area']['name']

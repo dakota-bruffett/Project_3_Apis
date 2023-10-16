@@ -15,6 +15,11 @@ header{
     background-color: #7C8EA6;
 }
 
+.return-button{
+    text-decoration: none;
+    color: black;
+}
+
 .list {
     padding: 12px;
     display: flex;
