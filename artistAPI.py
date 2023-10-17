@@ -6,7 +6,10 @@ BioList = [];
 
 def main(name):
     infoReturn = get_Artist(name)
-    return extract_artist_info(infoReturn);
+    if infoReturn == None:
+        return None
+    else:
+        return extract_artist_info(infoReturn);
 
 def get_Artist(artistName):
     #search for the artist
@@ -27,17 +30,21 @@ def extract_artist_info(jsonData):
         return None
     else:
         BioList.clear()
-
-        # data : Getting all the data for the Bio and save it in a list.
-        realName = jsonData['artists'][0]['aliases'][0]['sort-name']
-        Artist_country = jsonData['artists'][0]['area']['name']
-        Artist_City = jsonData['artists'][0]['begin-area']['name']
-        Artist_gender = jsonData['artists'][0]['gender']
-        artist_Birthday = jsonData['artists'][0]['life-span']['begin']
-        Music_Type = jsonData['artists'][0]['tags'][0]['name']
-
-        BioList.extend((realName,Artist_country,Artist_City,Artist_gender,artist_Birthday,Music_Type))
-
-        return BioList
+        try:
+            # data : Getting all the data for the Bio and save it in a list.
+            realName = jsonData['artists'][0]['aliases'][0]['sort-name']
+            Artist_country = jsonData['artists'][0]['area']['name']
+            Artist_City = jsonData['artists'][0]['begin-area']['name']
+            Artist_gender = jsonData['artists'][0]['gender']
+            artist_Birthday = jsonData['artists'][0]['life-span']['begin']
+            Music_Type = jsonData['artists'][0]['tags'][0]['name']
+            BioList.extend((realName,Artist_country,Artist_City,Artist_gender,artist_Birthday,Music_Type))
+        
+            return BioList
+        except Exception as exc:
+            print(exc)
+            print("Error in gettign info")
+            return None
+        
 
 
