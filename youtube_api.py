@@ -23,7 +23,18 @@ def singer_video():#category needed here?
         # print(response)
         # print(search_response)
         response = request.execute()
+        print('---------------------response-----------------------')
         pprint(response)
+        # print('------------------------test2---------------------')
+        # test2 = response['items'][0]['snippet'] #drilling down into json
+        # pprint(test2)
+        print('-----------------------video_title---------------------')
+        video_title = response['items'][0]['snippet']['title']
+        pprint(video_title)
+        print('-----------------------video_id---------------------')
+        video_id = response['items'][0]['id']['videoId']#getting video url?
+        pprint(video_id)
+
     except:#refine try-except later
         print('err')
 
