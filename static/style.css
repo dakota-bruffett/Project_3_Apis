@@ -22,6 +22,7 @@ header{
 
 .list {
     padding: 12px;
+    font-size: 20px;
     display: flex;
     justify-content: center;
     background-color: #7C8EA6;
@@ -40,4 +41,8 @@ main{
 .getData {
     padding: 19px;
 
+}
+
+.labels{
+    color:  #7C8EA6 ;
 }
