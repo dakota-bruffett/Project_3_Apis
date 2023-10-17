@@ -1,7 +1,7 @@
 {% extends 'model.html' %}
 {% block content %}
 
- 
+ <!-- This is a new Temple for Artist Info, This would help us to separate from the model template -->
     
     <main>
         <h1>Here is the Artist Info</h1>
@@ -14,9 +14,10 @@
         <h3>Birthday: {{artistBirth}}</h3>
         <h3>Music-Type: {{artistMusic}}</h3>
 
+        <!-- Here we hava a btn that will return our uset to the main page to search again. -->
         <button class="btn waves-effect waves-light">  <a class="return-button" href="/">Return to Main Page</a>
         </button>
-
+        <!-- This btn will save the artist in our DB -->
         <button class="btn waves-effect waves-light" type="submit" name="action">Save Artist
         </button>
     

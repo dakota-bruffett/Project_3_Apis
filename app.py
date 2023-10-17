@@ -7,17 +7,16 @@ app = Flask(__name__)
 @app.route('/') #home page
 def homepage():
     return render_template('index.html')
-    
-
 
 @app.route('/get_artist') # will get the artist info from the API
 def get_artist_info():
     artist = request.args.get('artist-Input') # safer - return None if no username
 
     returnUser = main(artist)
-    if returnUser == None:
+    if returnUser == None: # If we get a None , we should display a no info found on our template.
          return render_template('artist.html', artistName= 'No info found.')
     else:
+        #  Here we will return all the info that we get to create our Bio
          return render_template('artist.html', artistName= returnUser[0], artistCountry = returnUser[1], artistCity = returnUser[2],
                                 artistGender = returnUser[3],  artistBirth = returnUser[4], artistMusic = returnUser[5] ) # render our data, and send it to the html file to display.
 
