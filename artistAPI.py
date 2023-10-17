@@ -1,4 +1,4 @@
-import requests 
+import requests
 import os
 from pprint import pprint
 # Create out empty list 

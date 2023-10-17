@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'model.html' %}
 {% block content %}
 
@@ -6,6 +7,10 @@
     <main>
         <h1>Here is the Artist Info</h1>
 
+        <h2>
+          <strong>Stage Name:{{spotify_information.Name}}</strong>
+        </h2>
+<!-- This part is the Bio of the Artists -->
         <h1>Biography</h1>
         <h3>This is your Artist real name: <br>  <Strong>{{artistName}}</Strong></h3>
         <h3>Country:  {{artistCountry}}</h3>
@@ -13,6 +18,16 @@
         <h3>Gender: {{artistGender}}</h3>
         <h3>Birthday: {{artistBirth}}</h3>
         <h3>Music-Type: {{artistMusic}}</h3>
+
+<!--This part will display the Spotify info, and music info  -->
+        <p><img src="{{spotify_information.picture}}" /></p>
+        <strong>Followers:{{spotify_information.followers}}</strong>
+        <p>Albums</p>
+        <ul>
+          {%for album in spotify_information.albums%}
+          <li>{{album.album_name}} <img src="{{album.image}}" /></li>
+          {%endfor%}
+        </ul>
 
         <!-- Here we hava a btn that will return our uset to the main page to search again. -->
         <button class="btn waves-effect waves-light">  <a class="return-button" href="/">Return to Main Page</a>
@@ -23,5 +38,4 @@
     
     </main>
 
-    
 {% endblock %}
