@@ -12,7 +12,7 @@ for row in conn.execute('select * From Music data'):
     print(row)
 
 
-def Music_data(self):
+def music_data(self):
     Music_Stored = db.Music_Stored('dataStored')
     self.assertEqual('here we are', Music_Stored)
 
