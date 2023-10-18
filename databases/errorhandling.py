@@ -10,9 +10,9 @@ try:
     cur.execute('create table if not exists phones (brand text, version int)')
 
     # Add some data
-    cur.execute('insert into phones values ("Android", 5)')
-    cur.execute('insert into phones values ("iPhone", 6)')
-
+    cur.execute('insert into Song name ("Soldier, Poet, King")')
+    cur.execute('Insert into Artist information("The Oh hellos")')
+    cur.execute('Insert into Year of release("2015")')
     db.commit()  # Save changes
 
 # This will catch all database errors. You might also want to
@@ -40,7 +40,7 @@ try:
 
     # Fetch some data, using the cursor. This returns another cursor object
     # that can be iterated over
-    for row in c.execute('select * from phones'):
+    for row in c.execute('select * from Artist'):
         print(row)
 
 except sqlite3.Error as e:
@@ -56,7 +56,7 @@ try:
 
     db = sqlite3.connect('Music.db.py.db')  # Creates or opens database file
     c = db.cursor()
-    c.execute('drop table phones')  # Delete table
+    c.execute('drop table Songs')  # Delete table
     db.commit()  # Ask the database to save changes
 
 except sqlite3.Error as e:
