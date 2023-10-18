@@ -61,7 +61,7 @@ try:
 
 except sqlite3.Error as e:
     # As we are reading, no changes to roll back
-    print('Error deleting phones table from database')
+    print('Error Song and artiest info from database')
     print(e)
 
 finally:
