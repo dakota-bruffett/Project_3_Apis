@@ -29,6 +29,7 @@ def get_artist_info_route():
         return render_template('artist.html', artistName='No artist found.')
 
     else:
+        # This is how the template (Artist HTML) get's it API information
         return render_template('artist.html', musicbrainz_information=musicbrainz_information, spotify_information=spotify_information)
 
     # if returnUser == None:
