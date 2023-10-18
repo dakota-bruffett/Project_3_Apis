@@ -22,7 +22,7 @@ def get_artist_info():
 
 
 
-if __main__ == '__main__': # Main not nname
+if __name__ == '__main__': # Main not nname
     app.run()
 
 
