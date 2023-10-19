@@ -8,7 +8,14 @@ app = Flask(__name__)
 def homepage():
     return render_template('index.html')
 
-
+@app.route('/save',methods=['POST'])
+def save_data():
+    data = request.get_json()
+    print(data)
+    value = "{{Music.data}}"
+    name = "Music.db"
+    value = request.form.get ('Music.db')
+    return 'saved'
 @app.route('/get_artist') # will get the artist info from the API
 def get_artist_info():
     artist = request.args.get('artist-Input') # safer - return None if no username
