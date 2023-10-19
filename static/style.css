@@ -17,6 +17,19 @@ header {
   text-align: center;
   justify-content: center;
   background-color: #7c8ea6;
+
+.return-button{
+    text-decoration: none;
+    color: black;
+}
+
+.list {
+    padding: 12px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #7C8EA6;
+
 }
 
 .list {
@@ -79,3 +92,10 @@ main {
 .carousel-indicators li {
   list-style-type: none;
 }
+
+}
+
+.labels{
+    color:  #7C8EA6 ;
+}
+
