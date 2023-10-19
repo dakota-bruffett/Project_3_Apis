@@ -7,7 +7,7 @@ try:
     cur = db.cursor()  # Need a cursor object to perform operations
 
     # Create a table
-    cur.execute('create table if not exists phones (brand text, version int)')
+    cur.execute('create table if not exists Songs (brand text, version int)')
 
     # Add some data
     cur.execute('insert into Song name ("Soldier, Poet, King")')
