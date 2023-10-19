@@ -26,10 +26,12 @@ def get_artist_info_route():
     # safer - return None if no username
     artist = request.args.get('artist-Input') # safer - return None if no username
 
+
     # Using different API modules and passing in users' artist input value for the call
     returnUser = req_musicbrainz_info(artist)
     # Spotify will currently return information for artist's Stage name, followers count, artist image,albums w/images, and top tracks w/images
     spotify_information = get_spotify_artist_info(artist)
+
 
     # Checking if all information on artist is  not found for both api calls, return no artist found message template, else render template with their information
     if spotify_information is None and returnUser == None: # If we get a None , we should display a no info found on our template.
