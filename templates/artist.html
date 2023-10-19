@@ -1,104 +1,90 @@
 {% extends 'model.html' %}
 {% block content %}
 
- <!-- This is a new Temple for Artist Info, This would help us to separate from the model template -->
-    
-    <main>
-        <h1>Here is the Artist Info</h1>
+<!-- This is a new Temple for Artist Info, This would help us to separate from the model template -->
 
-         <section class="mb-6 artist-bio-section">
+<main>
+  <h1 class="start-text">Here is the Artist Info</h1>
+
+  <h2 id="stage-name-text">
+    <!-- <h1>Here is the Artist Info</h1> -->
+    <!-- Stage Name -->
+    <strong class="Artist-stage-name" style="color: black">{{spotify_information.Name}}</strong>
+  </h2>
+
+  <section class="mb-6 artist-bio-section">
+    <div class="row">
+
+
+      <!-- Names and Autobiography -->
+      <div class="col-md-8">
+        <!-- Real Name -->
+        <h2 id="artist-real-name-text">
+          <!-- This part is the Bio of the Artists -->
+          <h1>Biography</h1>
+          <h3>This is your Artist real name: <br> <Strong>{{artistName}}</Strong></h3>
+          <h3>Country: {{artistCountry}}</h3>
+          <h3>City: {{artistCity}}</h3>
+          <h3>Gender: {{artistGender}}</h3>
+          <h3>Birthday: {{artistBirth}}</h3>
+          <h3>Music-Type: {{artistMusic}}</h3>
+        </h2>
+      </div>
+      <div class="col-md-4">
+        <!-- Artist cover picture -->
+        <img src="{{spotify_information.picture}}" alt="Artist Profile picture from spotify"
+          class="artist-profile-picture" />
+      </div>
+
+    </div>
+  </section>
+
+  <!--This part will display the Spotify info, and music info  -->
+  <div id="carousel-of-tracks" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+    <ol class="carousel-indicators" style="display: none;">
+      {%for album in spotify_information.albums%}
+      <li data-bs-target="#carousel-of-tracks" data-bs-slide-to="{{loop.index0}}" {% if loop.first %} class="active"
+        {%endif%}></li>
+      {% endfor %}
+    </ol>
+
+    <!-- Albums inside carousel -->
+    <div class="carousel-inner">
+
+      {%for album in spotify_information.albums%}
+
+      <!-- 2 new albums shown per each slide -->
+      {% if loop.index0 % 2 == 0 %}
+      <div class="carousel-item {% if loop.first %} active {%endif%}">
         <div class="row">
-   
+          {% endif %}
 
-          <!-- Names and Autobiography -->
-          <div class="col-md-8">
-            <!-- Real Name -->
-            <h2 id="artist-real-name-text">
-              <!-- This part is the Bio of the Artists -->
-              <h1>Biography</h1>
-              <h3>This is your Artist real name: <br>  <Strong>{{artistName}}</Strong></h3>
-              <h3>Country:  {{artistCountry}}</h3>
-              <h3>City: {{artistCity}}</h3>
-              <h3>Gender: {{artistGender}}</h3>
-              <h3>Birthday: {{artistBirth}}</h3>
-              <h3>Music-Type: {{artistMusic}}</h3>
-            </h2>
-          </div>
-                 <div class="col-md-4">
-            <!-- Artist cover picture -->
-            <img
-              src="{{spotify_information.picture}}"
-              alt="Artist Profile picture from spotify"
-              class="artist-profile-picture"
-            />
-          </div>
-
-        </div>
-      </section>
-
-<!--This part will display the Spotify info, and music info  -->
-        <div
-          id="carousel-of-tracks"
-          class="carousel slide"
-          data-bs-ride="carousel"
-          data-bs-interval="4000"
-        >
-          <ol class="carousel-indicators" style="display: none;">
-            {%for album in spotify_information.albums%}
-            <li
-              data-bs-target="#carousel-of-tracks"
-              data-bs-slide-to="{{loop.index0}}"
-              {%
-              if
-              loop.first
-              %}
-              class="active"
-              {%endif%}
-            ></li>
-            {% endfor %}
-          </ol>
-
-          <!-- Albums inside carousel -->
-          <div class="carousel-inner">
-            
-              {%for album in spotify_information.albums%}
-
-              <!-- 2 new albums shown per each slide -->
-              {% if loop.index0 % 2 == 0 %}
-              <div class="carousel-item {% if loop.first %} active {%endif%}">
-                <div class="row">
-                  {% endif %}
-
-                  <!-- Album columns section -->
-                  <div class="col-md-6 album-col">
-                <!-- Album covers -->
-                <img
-                  src="{{album.image}}"
-                  class="d-block w-100 album-img"
-                  alt="{{album.album_name}}"
-                />
+          <!-- Album columns section -->
+          <div class="col-md-6 album-col">
+            <!-- Album covers -->
+            <img src="{{album.image}}" class="d-block w-100 album-img" alt="{{album.album_name}}" />
 
 
-                <!-- Album Name -->
-                <div class="album-name text-center">
-                  <h5>{{album.album_name}}</h5>
-                </div>
-              </div>
-
-              {% if loop.index0 % 2 == 1 or loop.last %}
+            <!-- Album Name -->
+            <div class="album-name text-center">
+              <h5>{{album.album_name}}</h5>
             </div>
           </div>
-          {%endif%}
-           {% endfor %}
+
+          {% if loop.index0 % 2 == 1 or loop.last %}
         </div>
-      
-        <!-- Here we hava a btn that will return our uset to the main page to search again. -->
-        <button class="btn waves-effect waves-light">  <a class="return-button" href="/">Return to Main Page</a>
-        </button>
-        <!-- This btn will save the artist in our DB -->
-        <button class="btn waves-effect waves-light" type="submit" name="action">Save Artist
-        </button>
-    
-    </main>
+      </div>
+      {%endif%}
+      {% endfor %}
+    </div>
+
+    <!-- Here we hava a btn that will return our uset to the main page to search again. -->
+    <button class="btn waves-effect waves-light"> <a class="return-button" href="/">Return to Main Page</a>
+    </button>
+    <!-- This btn will save the artist in our DB -->
+    <button class="btn waves-effect waves-light" type="submit" name="action">Save Artist
+    </button>
+
+</main>
 
 {% endblock %}

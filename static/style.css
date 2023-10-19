@@ -17,6 +17,7 @@ header {
   text-align: center;
   justify-content: center;
   background-color: #7c8ea6;
+}
 
 .return-button{
     text-decoration: none;
@@ -44,12 +45,15 @@ main {
   display: flexbox;
   justify-content: center;
   text-align: center;
-  color: #d7d7d9;
   background-color: #353440;
 }
 
 .getData {
   padding: 19px;
+}
+
+.start-text{
+  color: bisque;
 }
 
 /* Artist profile picture */
@@ -93,7 +97,6 @@ main {
   list-style-type: none;
 }
 
-}
 
 .labels{
     color:  #7C8EA6 ;
