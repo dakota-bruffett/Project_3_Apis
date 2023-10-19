@@ -19,29 +19,23 @@ def singer_video():#category needed here?
             type='video',#string, only retrieves a particular type of resource: channel, playlist, or video
             relevanceLanguage='en',#string
             safeSearch='moderate'#string, could be moderate, strict, or none
-        )#no .execute here?
-        # print(response)
-        # print(search_response)
+        )#no .execute() here?
         response = request.execute()
-        print('---------------------response-----------------------')
-        pprint(response)
+        # print('---------------------response-----------------------')
+        # pprint(response)
         # print('------------------------test2---------------------')
         # test2 = response['items'][0]['snippet'] #drilling down into json
         # pprint(test2)
-        print('-----------------------video_title---------------------')
-        video_title = response['items'][0]['snippet']['title']
-        pprint(video_title)
-        print('-----------------------video_id---------------------')
+        # print('-----------------------video_title---------------------')
+        title = response['items'][0]['snippet']['title']
+        # pprint(title)
+        # print('-----------------------video_id---------------------')
         video_id = response['items'][0]['id']['videoId']#getting video url?
-        pprint(video_id)
+        # pprint(video_id)
+        return {'title:': title, 'video_id': video_id}#send back both parameters to itentify video
 
     except:#refine try-except later
         print('err')
 
 
 singer_video()#TEMPORARY FOR STARTING PROGRAM FOR TESTING
-
-
-
-
-

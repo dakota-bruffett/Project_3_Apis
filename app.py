@@ -4,6 +4,8 @@ from artistAPI import main as req_musicbrainz_info
 
 from spotifyAPI import get_spotify_artist_info
 
+from youtube_api import singer_video
+
 app = Flask(__name__)
 
 
