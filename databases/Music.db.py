@@ -1,6 +1,6 @@
 import sqlite3
 from database import db
-
+import request
 conn = sqlite3.connect('Music_data.sqlite')
 
 conn.execute('Create a table for the song the user decides to input (Song Release date,artest name,song title)')
@@ -17,6 +17,8 @@ for row in conn.execute('select * From Music data'):
 def music_data(self):
     Music_Stored = db.Music_Stored('dataStored')
     self.assertEqual('here we are', Music_Stored)
-
+def data(data):
+    value = data
+    data = request.get(value)
     print('Here its time to store your data')
     return 'Hi its loaded in all of your data usage.'
