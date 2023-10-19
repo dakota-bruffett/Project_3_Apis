@@ -19,18 +19,17 @@ header {
   background-color: #7c8ea6;
 }
 
-.return-button{
-    text-decoration: none;
-    color: black;
+.return-button {
+  text-decoration: none;
+  color: black;
 }
 
 .list {
-    padding: 12px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    background-color: #7C8EA6;
-
+  padding: 12px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #7c8ea6;
 }
 
 .list {
@@ -52,7 +51,7 @@ main {
   padding: 19px;
 }
 
-.start-text{
+.start-text {
   color: bisque;
 }
 
@@ -97,8 +96,52 @@ main {
   list-style-type: none;
 }
 
-
-.labels{
-    color:  #7C8EA6 ;
+/* Top tracks section */
+#top-tracks-text {
+  background-color: #1a1a3d;
+  color: whitesmoke;
 }
 
+.scrollable-tracks {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #353440;
+  padding: 10px;
+}
+
+.track-row {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #353440;
+  display: flex;
+  align-items: center;
+}
+
+#top-tracks-img {
+  flex: 0 0 15rem;
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+#top-track-name {
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds ... if name is long */
+  color: whitesmoke;
+  white-space: nowrap; /* Track name does not go to next line*/
+}
+
+#top-tracks-popularity {
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds ... if name is long */
+  color: whitesmoke;
+  white-space: nowrap;
+}
+
+.labels {
+  color: #7c8ea6;
+}
