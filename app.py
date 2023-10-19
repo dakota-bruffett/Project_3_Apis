@@ -29,7 +29,7 @@ def get_artist_info_route():
          return render_template('artist.html', artistName= returnUser[0], artistCountry = returnUser[1], artistCity = returnUser[2],
                                 artistGender = returnUser[3],  artistBirth = returnUser[4], artistMusic = returnUser[5],
                                  spotify_information=spotify_information ) # render our data, and send it to the html file to display.\
-    
+
     # if returnUser == None:
     #     return render_template('artist.html', artistName='No artist found.')
     # else:
