@@ -1,0 +1,46 @@
+<!-- This is out model file that contain the main structure of our html file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Artist Discover App</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="../static/img/icons8-man-in-headphones-32.png">
+    <!--Bootstrap styles import  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    </head>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/style.css">
+    
+</head>
+<body class="artist-body">
+        <!-- Artist basic information -->
+        <!-- Fix section background-->
+        <!-- <div class="container mt-6"> -->
+    <header >
+        <h1>Super Artist Discover App</h1>
+        <h4>This app is design to interact with user and get interesting information about your favorite artist.</h4>
+    </header>
+    <div class="list">
+        <ul>
+            <dl><Strong>List of API for this project</Strong></dl>
+            <li>MusicBrainz</li>
+            <li>YouTube API</li>
+            <li>Spotify API</li>
+        </ul>
+    </div>
+
+    {% block content %}
+    
+    {% endblock %}
+   
+</body>
+</html>
