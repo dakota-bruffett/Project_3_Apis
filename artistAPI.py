@@ -9,7 +9,6 @@ NoInfo = ['not found','not found','not found','not found','not found','not found
 def main(name):
     infoReturn = get_Artist(name)
     listofArtist = extract_artist_info(infoReturn)
-    print(listofArtist)
 
     if listofArtist is None:   #If that info is not valid, we will return a None
         DataArtist = create_BioDictionary(listKeys, NoInfo)
@@ -33,34 +32,30 @@ def get_Artist(artistName):
 
 #Extract the info of the artist to do a Bio
 def extract_artist_info(jsonData):
-
     if jsonData == None:
         return None
     else:
         BioList.clear()
-        Artist_gender = 'band'
         try:
-            # data : Getting all the data for the Bio and save it in a list.
+                # data : Getting all the data for the Bio and save it in a list.
             realName = jsonData['artists'][0]['aliases'][0]['sort-name']
             Artist_country = jsonData['artists'][0]['area']['name']
             Artist_City = jsonData['artists'][0]['begin-area']['name']
-                    # if the artist is a bandm we will not have a gender 
-            if (jsonData['artists'][0]['gender'] is not None):
-                Artist_gender = jsonData['artists'][0]['gender']
+
             artist_Birthday = jsonData['artists'][0]['life-span']['begin']
             Music_Type = jsonData['artists'][0]['tags'][0]['name']
+            # if the artist is a band we will not have a gender 
+            if (jsonData['artists'][0]['gender'] is not None):
+                Artist_gender = jsonData['artists'][0]['gender']
             BioList.extend((realName,Artist_country,Artist_City,Artist_gender,artist_Birthday,Music_Type))
-
         # Here we return the info in our list 
             return BioList
         except Exception as exc:
-
-            # If there is any error in getting any info, we will retunr a NONE, and print an error
             print(exc)
-            
-            pprint(jsonData)
-            print("Error in gettign info")
-            return None
+            print('ERROR')
+            Artist_gender = 'band'
+            BioList.extend((realName,Artist_country,Artist_City,Artist_gender,artist_Birthday,Music_Type))
+            return BioList
 
 def create_BioDictionary(keys, values):
     BioResult = {} 
