@@ -27,7 +27,12 @@
           <li>{{album.album_name}} <img src="{{album.image}}" /></li>
           {%endfor%}
         </ul>
-
+        
+        <!-- Displaying the five videos -->
+        {% for video in artist_video %}
+        <h4>{{video.title}}</h4>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video.video_id}}"></iframe>
+        {% endfor %}
         
 
         <!-- Here we hava a btn that will return our uset to the main page to search again. -->

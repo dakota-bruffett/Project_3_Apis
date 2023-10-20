@@ -6,8 +6,8 @@ api_key = os.environ['YOUTUBE_API_KEY']
 api_name = 'youtube'
 api_version = 'v3'
 
-artist_name = input('Artist name? ')#TEMPORARY INPUT FOR TESTING
-def singer_video():#category needed here?
+# artist_name = input('Artist name? ')#TEMPORARY INPUT FOR TESTING
+def singer_video(artist):#category needed here?
      
     try:
         yt_response = build(api_name, api_version, developerKey=api_key)#build() creates a service object takes api name and api version as arguments
@@ -15,14 +15,14 @@ def singer_video():#category needed here?
             part='snippet',#string, always will be snippet?
             maxResults=5,#unsigned integer
             order='relevance',#string, params are: date, rating, relevance, title, videoCount, or viewCount
-            q=artist_name,#string, q is query term to search for
+            q=artist,#string, q is query term to search for
             type='video',#string, only retrieves a particular type of resource: channel, playlist, or video
             relevanceLanguage='en',#string
             safeSearch='moderate'#string, could be moderate, strict, or none
         )#no .execute() here?
         response = request.execute()#response will bethe json turned into a python dictionary?
         
-        # pprint(response)#for testing
+        pprint(response)#for testing
         
         title = response['items'][0]['snippet']['title']#pulling out the titles of the videos
         
@@ -33,13 +33,13 @@ def singer_video():#category needed here?
 
         for item in response.get('items', []):#loop to return the value associated with the key 'items', which is a list of dictionaries. Otherwise returns empty list so it won't crash
             title = item['snippet']['title']#drilling down to pull out the title and video id parameters 
-            video_id = item['id']['videoId']#
+            video_id = item['id']['videoId']
             five_video_list.append({'title': title, 'video_id': video_id})#package these two items into another dictionary and add them all to the list 
-        pprint(five_video_list)#for testing
+        # pprint(five_video_list)#for testing
         return five_video_list#send back list of parameters to itentify videos
 
     except:#refine try-except later
         print('err')
 
-
-singer_video()#TEMPORARY FOR STARTING PROGRAM FOR TESTING
+if __name__ == '__main__':#allows module to be run solo
+    singer_video(input('Artist name? '))
