@@ -2,14 +2,21 @@ import requests
 import os
 from pprint import pprint
 # Create out empty list 
-BioList = [];
+BioList = []
+listKeys = ['name','country','city','gender','birthday','music']
+NoInfo = ['not found','not found','not found','not found','not found','not found']
 # Our main method will call the other methods, and will return all the info that we required.
 def main(name):
     infoReturn = get_Artist(name)
-    if infoReturn == None:   #If that info is not valid, we will return a None
-        return None
+    listofArtist = extract_artist_info(infoReturn)
+    print(listofArtist)
+
+    if listofArtist is None:   #If that info is not valid, we will return a None
+        DataArtist = create_BioDictionary(listKeys, NoInfo)
+        return DataArtist
     else:
-        return extract_artist_info(infoReturn);
+        DataArtist = create_BioDictionary(listKeys,listofArtist)
+        return DataArtist
 
 def get_Artist(artistName):
     #search for the artist in our API musicbrainz
@@ -31,22 +38,33 @@ def extract_artist_info(jsonData):
         return None
     else:
         BioList.clear()
+        Artist_gender = 'band'
         try:
             # data : Getting all the data for the Bio and save it in a list.
             realName = jsonData['artists'][0]['aliases'][0]['sort-name']
             Artist_country = jsonData['artists'][0]['area']['name']
             Artist_City = jsonData['artists'][0]['begin-area']['name']
-            Artist_gender = jsonData['artists'][0]['gender']
+                    # if the artist is a bandm we will not have a gender 
+            if (jsonData['artists'][0]['gender'] is not None):
+                Artist_gender = jsonData['artists'][0]['gender']
             artist_Birthday = jsonData['artists'][0]['life-span']['begin']
             Music_Type = jsonData['artists'][0]['tags'][0]['name']
             BioList.extend((realName,Artist_country,Artist_City,Artist_gender,artist_Birthday,Music_Type))
+
         # Here we return the info in our list 
             return BioList
         except Exception as exc:
+
             # If there is any error in getting any info, we will retunr a NONE, and print an error
             print(exc)
+            
+            pprint(jsonData)
             print("Error in gettign info")
             return None
-        
 
+def create_BioDictionary(keys, values):
+    BioResult = {} 
+    for key, value in zip(keys, values):
+        BioResult[key] = value
+    return BioResult
 
