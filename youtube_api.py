@@ -13,7 +13,7 @@ def singer_video(artist):#category needed here?
         yt_response = build(api_name, api_version, developerKey=api_key)#build() creates a service object takes api name and api version as arguments
         request = yt_response.search().list(
             part='snippet',#string, always will be snippet?
-            maxResults=5,#unsigned integer
+            maxResults=1,#unsigned integer
             order='relevance',#string, params are: date, rating, relevance, title, videoCount, or viewCount
             q=artist,#string, q is query term to search for
             type='video',#string, only retrieves a particular type of resource: channel, playlist, or video
@@ -32,10 +32,11 @@ def singer_video(artist):#category needed here?
         five_video_list = []#create empty list to hold the five videos
 
         for item in response.get('items', []):#loop to return the value associated with the key 'items', which is a list of dictionaries. Otherwise returns empty list so it won't crash
-            title = item['snippet']['title']#drilling down to pull out the title and video id parameters 
+            title = item['snippet']['title']#drilling down to pull out the title and video id, and high thumnail parameters 
             video_id = item['id']['videoId']
+            high_thumbnail = item['snippet']['thumbnails']['high']#['height']
             five_video_list.append({'title': title, 'video_id': video_id})#package these two items into another dictionary and add them all to the list 
-        # pprint(five_video_list)#for testing
+        pprint(five_video_list)#for testing
         return five_video_list#send back list of parameters to itentify videos
 
     except:#refine try-except later
