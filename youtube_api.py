@@ -32,10 +32,13 @@ def singer_video(artist):#category needed here?
         five_video_list = []#create empty list to hold the five videos
 
         for item in response.get('items', []):#loop to return the value associated with the key 'items', which is a list of dictionaries. Otherwise returns empty list so it won't crash
-            title = item['snippet']['title']#drilling down to pull out the title and video id, and high thumnail parameters 
+            title = item['snippet']['title']#drilling down to pull out the title and video id, and high thumbnail parameters 
             video_id = item['id']['videoId']
-            high_thumbnail = item['snippet']['thumbnails']['high']#['height']
-            five_video_list.append({'title': title, 'video_id': video_id})#package these two items into another dictionary and add them all to the list 
+            # high_thumbnail = item['snippet']['thumbnails']['high']
+            high_height = item['snippet']['thumbnails']['high']['height']
+            high_url = item['snippet']['thumbnails']['high']['url']
+            high_width = item['snippet']['thumbnails']['high']['width']
+            five_video_list.append({'title': title, 'video_id': video_id, 'height': high_height, 'url': high_url, 'width': high_width})#package these two items into another dictionary and add them all to the list 
         pprint(five_video_list)#for testing
         return five_video_list#send back list of parameters to itentify videos
 
