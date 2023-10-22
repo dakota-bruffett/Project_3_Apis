@@ -38,7 +38,11 @@ def singer_video(artist):#category needed here?
             high_height = item['snippet']['thumbnails']['high']['height']
             high_url = item['snippet']['thumbnails']['high']['url']
             high_width = item['snippet']['thumbnails']['high']['width']
-            five_video_list.append({'title': title, 'video_id': video_id, 'height': high_height, 'url': high_url, 'width': high_width})#package these two items into another dictionary and add them all to the list 
+            five_video_list.append({'title': title, 
+                                    'video_id': video_id, 
+                                    'height': high_height, 
+                                    'url': high_url, 
+                                    'width': high_width})#package these two items into another dictionary and add them all to the list 
         pprint(five_video_list)#for testing
         return five_video_list#send back list of parameters to itentify videos
 
