@@ -28,11 +28,11 @@
           {%endfor%}
         </ul>
         
-        <!-- Displaying the five thumbnails and video links -->
-        {% for video in artist_video %}
+        <!--Displaying the five thumbnails and their video links in the titles-->
+        {% for video in artist_video %}<!--Looping over the list of dictionaries from API-->
         <h4><a href="https://www.youtube.com/watch?v={{video.video_id}}">{{video.title}}</a></h4><!--watch is keyword indicating video to play, ? is seperator, v= is to specify videoId-->
         <a>
-          <img src="{{video.url}}" height="{{video.height}}", width="{{video.width}}">
+          <img src="{{video.url}}" height="{{video.height}}", width="{{video.width}}"><!--creating the thumbnail using paramters from the API-->
         </a>
         {% endfor %}
         
