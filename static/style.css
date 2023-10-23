@@ -3,6 +3,28 @@
   padding: 0;
 }
 
+#submit-btn {
+  text-decoration: none;
+  color: darkblue;
+  background-color: #7c8ea6;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 2px solid black;
+  /* Transition effect */
+  transition: all 0.4s ease-in-out;
+}
+
+#submit-btn:hover {
+  background-color: ghostwhite;
+  color: black;
+  box-shadow: 0 0 10px black;
+}
+
+#submit-btn:before {
+  margin-right: 5px;
+}
+
 body {
   background-color: #1a1a3d;
 }
@@ -19,9 +41,54 @@ header {
   background-color: #7c8ea6;
 }
 
+.btn-section {
+  padding-top: 2rem;
+}
+
 .return-button {
   text-decoration: none;
+  color: darkblue;
+  background-color: #7c8ea6;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 2px solid black;
+  /* Transition effect */
+  transition: all 0.4s ease-in-out;
+}
+
+/* return btn hover effect */
+.return-button:hover {
+  background-color: ghostwhite;
   color: black;
+  box-shadow: 0 0 10px black;
+}
+
+.return-button:before {
+  margin-right: 5px;
+}
+
+/* save btn */
+#save-btn {
+  text-decoration: none;
+  color: darkblue;
+  background-color: #7c8ea6;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 2px solid black;
+  /* Transition effect */
+  transition: all 0.4s ease-in-out;
+}
+
+#save-btn:hover {
+  background-color: ghostwhite;
+  color: black;
+  box-shadow: 0 0 10px black;
+}
+
+#save-btn:before {
+  margin-right: 5px;
 }
 
 .list {
@@ -60,13 +127,20 @@ main {
   border-radius: 50%;
   width: 100%;
   height: auto;
-  padding-top: 10px;
-  padding-right: 10px;
+  display: block;
+  margin: auto;
+  padding-top: 5px;
+  padding-right: 5px;
 }
 
 .artist-bio-section {
   padding-bottom: 2rem;
   background-color: bisque;
+}
+
+.album-col {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 #stage-name-text {
@@ -115,6 +189,10 @@ main {
   border: 1px solid #353440;
   display: flex;
   align-items: center;
+}
+
+.top-tracks-section {
+  background-color: #7c8ea6;
 }
 
 #top-tracks-img {

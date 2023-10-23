@@ -1,19 +1,24 @@
-{% extends 'model.html' %}
-{% block content %}
+{% extends 'model.html' %} {% block content %}
 
 <!-- This is the index file that will send the input to the user to search fot the artist  -->
 
-    <main>
-        <h2 class="start-text">Enter here to see the magic !</h2>
-        <div class="getData">
-            <form  method="GET" action="get_artist">
-                <label for="artisInput"><h2 class="labels" >Artist</h2> </label>
-                <input name="artist-Input" id="artisInput" type="text">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
-        </div>
-    </main>
+<main>
+  <h2 class="start-text">Enter here to see the magic !</h2>
+  <div class="getData">
+    <form method="GET" action="get_artist">
+      <label for="artisInput"><h2 class="labels">Artist</h2> </label>
+      <input name="artist-Input" id="artisInput" type="text" />
+      <button
+        class="btn waves-effect waves-light"
+        type="submit"
+        id="submit-btn"
+        name="action"
+      >
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+</main>
 
 {% endblock %}
