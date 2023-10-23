@@ -22,6 +22,8 @@ def get_Artist(artistName):
     searchArt = f'https://musicbrainz.org/ws/2/artist?query={artistName}&fmt=json'
     try:
         responseArtist = requests.get(searchArt).json()
+        tryGetNameArtist = responseArtist['artists'][0]['aliases'][0]['sort-name'] # try to get an Artist from the data. if not we retunr the error.
+
         return responseArtist
     # if artist is not found, we will send an excepction and return None
     except Exception as exc:
@@ -32,9 +34,7 @@ def get_Artist(artistName):
 
 #Extract the info of the artist to do a Bio
 def extract_artist_info(jsonData):
-    if jsonData == None:
-        return None
-    else:
+    if jsonData is not None:
         BioList.clear()
         try:
                 # data : Getting all the data for the Bio and save it in a list.
@@ -56,6 +56,9 @@ def extract_artist_info(jsonData):
             Artist_gender = 'band'
             BioList.extend((realName,Artist_country,Artist_City,Artist_gender,artist_Birthday,Music_Type))
             return BioList
+    else: 
+        return None
+
 
 def create_BioDictionary(keys, values):
     BioResult = {} 
