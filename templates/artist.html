@@ -17,13 +17,16 @@
         <h2 id="artist-real-name-text">
           <!-- This part is the Bio of the Artists -->
           <h1>Biography</h1>
-          <h3>This is your Artist real name: <br> <Strong>{{artistName}}</Strong></h3>
-          <h3>Country: {{artistCountry}}</h3>
-          <h3>City: {{artistCity}}</h3>
-          <h3>Gender: {{artistGender}}</h3>
-          <h3>Birthday: {{artistBirth}}</h3>
-          <h3>Music-Type: {{artistMusic}}</h3>
+          <h3>This is your Artist's real name: <br>  <Strong>{{returnUser.name}}</Strong></h3>
+          <h3>Country:  {{returnUser.country}}</h3>
+          <h3>City: {{returnUser.city}}</h3>
+          <h3>Gender: {{returnUser.gender}}</h3>
+          <h3>Birthday: {{returnUser.birthday}}</h3>
+          <h3>Music-Type: {{returnUser.music}}</h3>
         </h2>
+
+
+
       </div>
       <div class="col-md-4">
         <!-- Artist cover picture -->
@@ -34,6 +37,13 @@
     <!-- <h1>Here is the Artist Info</h1> -->
     <!-- Stage Name -->
     <strong class="Artist-stage-name" style="color: black">{{spotify_information.Name}}</strong>
+  </h2>
+
+  <!-- Followers -->
+  <h2 id="artist-followers">
+    <!-- <h1>Here is the Artist Info</h1> -->
+    <!-- Stage Name -->
+    <strong id="Artist-Followers-Count" style="color: black">{{spotify_information.followers}}</strong>
   </h2>
       </div>
 
@@ -85,7 +95,7 @@
     <div class="artists-top-tracks">
       <div class="container-fluid top-tracks-section">
         <h2 id="top-tracks-text">
-          Top Tracks
+          Artist's Top Tracks
         </h2>
         <!-- Artists top tracks will be inside a scrollable feature -->
         <div class="scrollable-tracks">
@@ -110,7 +120,7 @@
                   {% if track.preview_link %}
                   <h2 id="preview-link-url">
                     
-                    <audio controls id="previewAudio">
+                    <audio controls class="previewAudio">
                       <source src="{{track.preview_link}}" type="audio/mpeg">
                       Unfortunately, your browser does not support the audio element. Otherwise, here is the link to preview! <a href="{{track.preview_link}}" target="_blank">▶️</a
                     </audio>
@@ -130,8 +140,40 @@
 
     </div>
 
+    <!-- Artist Related YT Vids (reusing same class names and styles due to short time)  -->
+
+  <div class="artists-vids">
+      <div class="container-fluid yt-vids-section">
+        <h2 id="yt-text">
+          Artist's Related YouTube Videos
+        </h2>
+        <!-- Artists top tracks will be inside a scrollable feature -->
+        <div class="scrollable-vids">
+                  <!--Displaying the five thumbnails and their video links in the titles-->     
+        {% for video in artist_video %}<!--Looping over the list of dictionaries from API-->
+        
+              <div class="row vid-row">
+                <!-- Track image -->
+                <div class="col-3">
+               <a>
+          <img class = "top-tracks-img" src="{{video.url}}" id="yt-thumbnail">
+          <!--creating the thumbnail using parameters from the API-->
+        </a>
+                </div>
+
+                <!-- Track name -->
+                <div class="col-9">
+                     <h4 id="link-yt-vid-text"><a href="https://www.youtube.com/watch?v={{video.video_id}}" target="_blank">{{video.title}}</a></h4><!--watch is keyword indicating video to play, ? is separator, v= is to specify videoId-->
+                </div>
+              </div>
+              {% endfor %}
+        </div>
+    
+
+    </div>
+
     <div class="btn-section">
-    <!-- Here we have a a btn that will return our uset to the main page to search again. -->
+    <!-- Here we have a a btn that will return our used to the main page to search again. -->
     <button class="btn waves-effect waves-light"> <a class="return-button" href="/">Return to Main Page</a>
     </button>
     <!-- This btn will save the artist in our DB -->
@@ -139,20 +181,38 @@
     </button>
     </div>
 
-    <!-- Preview audio js script -->
+    <!-- Preview audio level in js, and followers count commas added scripts -->
 
-    <!-- Can edit audio controls and settings for audio preview on loaded DOM-->
     <script>
+    // Grab followers count from Jinja2 format
+    let followerElement = document.getElementById('Artist-Followers-Count');
 
-      
+      // Fetch the followers count from the strong tag and make it an integer, since strong tag is tech only a string value
+      // 10 is radix base parameter for the standard number system we use (0-9). This is  for JS engine to interpret and in case the string starts with 056788...
+      // https://en.wikipedia.org/wiki/Radix
+    let followers = parseInt(followerElement.textContent.trim(),10);
+
+    // Format the followers count with comma separators
+    let formattedFollowers = followers.toLocaleString('en-US');
+     // setting the count to text content
+    document.getElementById('Artist-Followers-Count').textContent = formattedFollowers + " Spotify Followers";
+
+ 
+    // Can edit audio controls and settings for audio preview on loaded DOM-
       document.addEventListener('DOMContentLoaded', function () {
-        var audioElementSupport = document.getElementById('previewAudio')
+        var audioElementSupport = document.querySelectorAll('.previewAudio')
         
         if(audioElementSupport) {
+
+          audioElementSupport.forEach(function (audioElement) {
+            // All Volume element is halfway turned when audio sample is displayed
+             audioElement.volume = 0.5 
+          })
           
-          audioElementSupport.volume = 0.5 
+         
         }
       })
+
     </script>
 
 </main>

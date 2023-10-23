@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+/* Hide scrollbar */
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 #submit-btn {
   text-decoration: none;
   color: darkblue;
@@ -31,6 +37,10 @@ body {
 
 .artist-body {
   background-color: #1a1a3d;
+}
+
+#artist-followers .Artist-Followers-Count {
+  white-space: nowrap;
 }
 
 header {
@@ -176,7 +186,28 @@ main {
   color: whitesmoke;
 }
 
+#yt-text {
+  background-color: #1a1a3d;
+  color: whitesmoke;
+}
+
 .scrollable-tracks {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #353440;
+  padding: 10px;
+}
+
+/* Make the scroll bars disappear for both sections */
+.scrollable-tracks::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-vids::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-vids {
   max-height: 500px;
   overflow-y: auto;
   border: 1px solid #353440;
@@ -191,8 +222,22 @@ main {
   align-items: center;
 }
 
+.vid-row {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #353440;
+  display: flex;
+  align-items: center;
+}
+
 .top-tracks-section {
-  background-color: #7c8ea6;
+  background-color: #1b2735;
+  padding-bottom: 2rem;
+}
+
+.yt-vids-section {
+  padding-top: 2rem;
+  background-color: #2a2a2a;
 }
 
 #top-tracks-img {
@@ -204,12 +249,31 @@ main {
   margin-right: 20px;
 }
 
-#top-track-name {
+#top-track-name,
+#link-yt-vid-text {
   font-size: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis; /* Adds ... if name is long */
   color: whitesmoke;
   white-space: nowrap; /* Track name does not go to next line*/
+}
+
+#link-yt-vid-text a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+#link-yt-vid-text a:hover {
+  color: lightblue;
+}
+
+#yt-thumbnail {
+  flex: 0 0 15rem;
+  width: 100%;
+  max-width: 150%;
+  height: auto;
+  object-fit: cover;
+  margin-right: 20px;
 }
 
 #top-tracks-popularity {
