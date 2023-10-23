@@ -34,13 +34,12 @@ def get_artist_info_route():
 
 
     # Checking if all information on artist is  not found for both api calls, return no artist found message template, else render template with their information
-    if spotify_information is None and returnUser == None: # If we get a None , we should display a no info found on our template.
-         return render_template('artist.html', artistName= 'No info found.')
+    if spotify_information is None and returnUser is None: # If we get a None , we should display a no info found on our template.
+         return render_template('artist.html',returnUser= returnUser, spotify_information=spotify_information)
     else:
         #  Here we will return all the info that we get to create our Bio
-         return render_template('artist.html', artistName= returnUser[0], artistCountry = returnUser[1], artistCity = returnUser[2],
-                                artistGender = returnUser[3],  artistBirth = returnUser[4], artistMusic = returnUser[5],
-                                 spotify_information=spotify_information ) # render our data, and send it to the html file to display.\
+         return render_template('artist.html', returnUser= returnUser, spotify_information=spotify_information ) # render our data, and send it to the html file to display.\
+
 
     # if returnUser == None:
     #     return render_template('artist.html', artistName='No artist found.')
