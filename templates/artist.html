@@ -147,13 +147,13 @@
         <h2 id="yt-text">
           Artist's Related YouTube Videos
         </h2>
-        <!-- Artists top tracks will be inside a scrollable feature -->
+        <!-- Artists vids will be inside a scrollable feature -->
         <div class="scrollable-vids">
-                  <!--Displaying the five thumbnails and their video links in the titles-->     
+                  <!--Displaying the 20 thumbnails and their video links in the titles-->     
         {% for video in artist_video %}<!--Looping over the list of dictionaries from API-->
         
               <div class="row vid-row">
-                <!-- Track image -->
+                <!-- vid image -->
                 <div class="col-3">
                <a>
           <img class = "top-tracks-img" src="{{video.url}}" id="yt-thumbnail">
@@ -161,7 +161,7 @@
         </a>
                 </div>
 
-                <!-- Track name -->
+                <!-- vid name -->
                 <div class="col-9">
                      <h4 id="link-yt-vid-text"><a href="https://www.youtube.com/watch?v={{video.video_id}}" target="_blank">{{video.title}}</a></h4><!--watch is keyword indicating video to play, ? is separator, v= is to specify videoId-->
                 </div>
