@@ -67,6 +67,3 @@ def save_data(data):
 def music_data(self):
     Music_Stored = db.Music_Stored('dataStored')
     self.assertEqual('here we are', Music_Stored)
-
-    print('Here its time to store your data')
-    return 'Hi its loaded in all of your data usage.'
