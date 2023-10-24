@@ -21,7 +21,7 @@ def get_youtube_videos(artist):
         yt_response = build(api_name, api_version, developerKey=api_key)#build() creates a service object takes api name and api version as arguments
         request = yt_response.search().list(
             part='snippet',#string, always will be snippet?
-            maxResults=5,#unsigned integer
+            maxResults=20,#unsigned integer
             order='relevance',#string, params are: date, rating, relevance, title, videoCount, or viewCount
             q=artist,#string, q is query term to search for
             type='video',#string, only retrieves a particular type of resource: channel, playlist, or video
@@ -35,9 +35,15 @@ def get_youtube_videos(artist):
         
         return five_video_list#send back list of parameters to identify videos
 
-    except HttpError as e:
+    except HttpError as e:# Handles related HTTP errors such as API rate limits, unauthorized access, etc.
         logging.exception(e)
-        print(f'An error has occured: {e}')
+        print('An http related error has occured.')
+    except KeyError as e:# Handles errors related to missing or incorrectly formatted JSON responses?
+        logging.exception(e)
+        print('The returned data is not in expected format.')
+    except Exception as e:# Handle other unexpected exceptions
+        logging.exception(e)
+        print('An uexpected error has occured.')
 
 def extract_video_info(response):
     five_video_list = []#create empty list to hold the five videos
@@ -45,8 +51,8 @@ def extract_video_info(response):
     for item in response.get('items', []):#loop to return the value associated with the key 'items', which is a list of dictionaries. Otherwise returns empty list so it won't crash
         title = item['snippet']['title']#pulling out the titles of the videos
         video_id = item['id']['videoId']#will unique identify videos
-        high_height = item['snippet']['thumbnails']['high']['height']#could choose betweeen default, high, or medium thumnails, which differ in size and img quality.
-        high_url = item['snippet']['thumbnails']['high']['url']
+        high_height = item['snippet']['thumbnails']['high']['height']
+        high_url = item['snippet']['thumbnails']['high']['url']#could choose betweeen default, high, or medium thumnails, which differ in size and img quality.
         high_width = item['snippet']['thumbnails']['high']['width']
         five_video_list.append({'title': title, 
                                 'video_id': video_id, 
