@@ -4,7 +4,7 @@ from artistAPI import main as req_musicbrainz_info
 
 from spotifyAPI import get_spotify_artist_info
 
-from youtube_api import singer_video
+from youtube_api import get_youtube_videos
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ def get_artist_info_route():
     # Spotify will currently return information for artist's Stage name, followers count, artist image,albums w/images, and top tracks w/images
     spotify_information = get_spotify_artist_info(artist)
 
-    artist_video = singer_video(artist)
+    artist_video = get_youtube_videos(artist)
 
     # Checking if all information on artist is  not found for both api calls, return no artist found message template, else render template with their information
     if spotify_information is None and returnUser == None: # If we get a None , we should display a no info found on our template.
