@@ -3,7 +3,7 @@ import os
 import time
 from pprint import pprint
 import logging
-
+from dotenv import load_dotenv
 
 # Note: Need to make a spotify dev account and create app to be able have access to client id and secret key.
 
@@ -22,6 +22,8 @@ class Spotify_API:
     TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/artists/{id}/top-tracks'
 
     def __init__(self):
+
+        load_dotenv()
         # Spotify Client ID
         self.SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
 

@@ -3,7 +3,10 @@ import os
 from pprint import pprint
 from googleapiclient.errors import HttpError
 import logging
+from dotenv import load_dotenv
 
+
+load_dotenv()
 
 logging.basicConfig(#set up logging settings
     level=logging.DEBUG,
@@ -35,10 +38,10 @@ def get_youtube_videos(artist):
         
         return five_video_list#send back list of parameters to identify videos
 
-    except HttpError as e:# Handles related HTTP errors such as API rate limits, unauthorized access, etc.
+    except HttpError as e:# Handles related HTTP errors such trying to access unauthorized resources, server errors, connetion problems and many more...
         logging.exception(e)
         print('An http related error has occured.')
-    except KeyError as e:# Handles errors related to missing or incorrectly formatted JSON responses?
+    except KeyError as e:# Handles errors related to missing dictionary keys or incorrectly formatted JSON responses
         logging.exception(e)
         print('The returned data is not in expected format.')
     except Exception as e:# Handle other unexpected exceptions
