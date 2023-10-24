@@ -5,11 +5,11 @@ from pprint import pprint
 import logging
 from dotenv import load_dotenv
 
-# Note: Need to make a spotify dev account and create app to be able have access to client id and secret key.
+
+# Note: Need to make a spotify dev account and create app to be able have access to client id and secret key, then assign in .env file before running.
 
 
 # Logging set up
-logging.basicConfig(level=logging.ERROR)
 logging.basicConfig(level=logging.INFO)
 
 
@@ -21,14 +21,17 @@ class Spotify_API:
     ALBUMS_ENDPOINT = 'https://api.spotify.com/v1/artists/{id}/albums'
     TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/artists/{id}/top-tracks'
 
+    # Initial state of Spotify's object
     def __init__(self):
 
+        # Will load variables from .env to the environment
         load_dotenv()
+
         # Spotify Client ID
-        self.SPOTIFY_CLIENT_ID = os.environ['SPOTIFY_CLIENT_ID']
+        self.SPOTIFY_CLIENT_ID = os.environ.get('SPOTIFY_CLIENT_ID')
 
         # Spotify Secret Client ID
-        self.SPOTIFY_CLIENT_SECRET = os.environ['SPOTIFY_CLIENT_SECRET']
+        self.SPOTIFY_CLIENT_SECRET = os.environ.get('SPOTIFY_CLIENT_SECRET')
 
         # Access token that is needed for every api call
         self.access_token = None
@@ -39,8 +42,8 @@ class Spotify_API:
         self.refresh_Spotify_access_token()
 
         # Make sure you have both client id and secret id set up first. Logging should give corresponding key pair values if set up correctly for environment variables
-        logging.info(f"Client ID: {self.SPOTIFY_CLIENT_ID}")
-        logging.info(f"Secret ID: {self.SPOTIFY_CLIENT_SECRET}")
+        # logging.info(f"Client ID: {self.SPOTIFY_CLIENT_ID}")
+        # logging.info(f"Secret ID: {self.SPOTIFY_CLIENT_SECRET}")
 
     # # A new auth key is required every time after the key expires in 1 hour.
     # Need to send a request to spotify token end point to get a new access token and also providing necessary data to the URL such as client ID and secret key
@@ -59,6 +62,13 @@ class Spotify_API:
             'client_id': self.SPOTIFY_CLIENT_ID,
             'client_secret': self.SPOTIFY_CLIENT_SECRET,
         })
+
+        # If getting token response is not a success, (!200 status code) then give logging info  and raise exception
+        if token_response.status_code != 200:
+            logging.error(
+                f'Failed to fetch access token: {token_response.text}')
+
+            raise Exception('Failed to fetch access token!')
 
         # From the response, the data that will be received are, access_token, token_type, and expires_in with their values. Need access token value from those object variables in order to use the API calls.
 
@@ -88,6 +98,7 @@ class Spotify_API:
             'Authorization': f'Bearer {self.access_token}'
         }
 
+    # Get artist information with necessary requests params provided (e.g user's request for artist name and access Token for users API key) to spotify's search endpoint url
     def get_Artist(self, artist_Name):
 
         # Check if token expired (Over time limit), then get a new access token before using access token to call Artist data
@@ -104,14 +115,18 @@ class Spotify_API:
 
         }
 
+        # Try to get artist response
         try:
             # Searching for the artists
             response_Artist = requests.get(
                 self.SEARCH_ENDPOINT, headers=headers, params=params)
 
+            # General error if response is not successful
             if response_Artist.status_code != 200:
-                print('Error:', response_Artist.status_code)
-                print('Response:', response_Artist.text)
+                logging.error(f'Error: {response_Artist.text}')
+
+                print(
+                    f'Error: {response_Artist.status_code}, cannot fetch Request')
 
                 self.refresh_Spotify_access_token()
 
@@ -120,10 +135,19 @@ class Spotify_API:
 
             return response_Artist.json()
 
+        # Network Connection Issues
+        except requests.ConnectionError as conn:
+            logging.error(f'Error for connection {conn}')
+
+            print(f'Error fetching Spotify\'s artist API due to connection interruption!')
+
+        # Error exception
         except Exception as e:
             logging.exception(e)
 
             print(f'Error fetching Spotify\'s artist API')
+
+    # From the Spotify's responses (JSON data), grab the required data such as artist's ID for spotify searches and queries to retrieve that artist's name, pics, followers, tracks, etc.
 
     def extract_artist_info(self, json_Data):
 
@@ -185,7 +209,9 @@ class Spotify_API:
 
             # Extracting artists' top tracks and their images
             artists_Top_Tracks = [
-                {'track_name': track['name'], 'image': track['album']
+                {'track_name': track['name'],
+                 'popularity':track['popularity'],
+                 'preview_link':track['preview_url'], 'image': track['album']
                     ['images'][0]['url'] if track['album']['images'] else None}
                 for track in top_Tracks if track.get('name')]
 
@@ -194,7 +220,7 @@ class Spotify_API:
                 'picture': artist_Picture,
                 'followers': artist_Followers,
                 'albums': list_Of_Artists_Albums,
-                'top tracks': artists_Top_Tracks,
+                'top_tracks': artists_Top_Tracks,
             }
             pprint(Spotify_Artist_Info)
 
@@ -205,15 +231,22 @@ class Spotify_API:
 
             print('Error Processing Artist')
 
-    def main(self, name):
+    # Make a requests to grab necessary artist's data and passing and using users input name for Spotify's search endpoint. This includes authorization with keys and what type of information we expect When response is successful, we then extract the necessary data.
+    def grab_artists_Spotify_details(self, name):
         artist_info = self.get_Artist(name)
+        # Return necessary artist data to send back to users to see from Spotify's artist response
         return self.extract_artist_info(artist_info)
 
 
-Spotify_API = Spotify_API()
+# Instance creation for the spotify_api class (Calls __init__ method to set up startup state of the spotify api object, then stored in a variable )
+Spotify_API_instance = Spotify_API()
 
 
+# Gateway to start calls/req and return response
 def get_spotify_artist_info(name):
-    return Spotify_API.main(name)
+    # Use user's name input to req to spotify's search endpoint
+    # function will have necessary spotify's artist data too send back to users
+    return Spotify_API_instance.grab_artists_Spotify_details(name)
 
-# pprint(Spotify_API.main('Justin Bieber'))
+# Testing print - Should return this artist necessary information in object like form
+# pprint(Spotify_API.grab_artists_Spotify_details('Justin Bieber'))

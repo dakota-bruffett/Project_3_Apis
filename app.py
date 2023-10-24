@@ -13,10 +13,22 @@ app = Flask(__name__)
 def homepage():
     return render_template('index.html')
 
-@app.route('/get_artist') # will get the artist info from the API
+
+@app.route('/save', methods=['POST'])
+def save_data():
+    data = request.get_json()
+    print(data)
+    value = "{{Music.data}}"
+    name = "Music.db"
+    value = request.form.get('Music.db')
+    return 'saved'
+
+
+@app.route('/get_artist')  # will get the artist info from the API
 def get_artist_info_route():
     # safer - return None if no username
-    artist = request.args.get('artist-Input') # safer - return None if no username
+    # safer - return None if no username
+    artist = request.args.get('artist-Input')
 
     # Using different API modules and passing in users' artist input value for the call
     returnUser = req_musicbrainz_info(artist)
@@ -26,19 +38,21 @@ def get_artist_info_route():
     artist_video = get_youtube_videos(artist)
 
     # Checking if all information on artist is  not found for both api calls, return no artist found message template, else render template with their information
-    if spotify_information is None and returnUser == None: # If we get a None , we should display a no info found on our template.
-         return render_template('artist.html', artistName= 'No info found.')
+
+    # If we get a None , we should display a no info found on our template.
+    if spotify_information is None and returnUser is None:
+        return render_template('artist.html', returnUser=returnUser, spotify_information=spotify_information)
     else:
         #  Here we will return all the info that we get to create our Bio
-         return render_template('artist.html', artistName= returnUser[0], artistCountry = returnUser[1], artistCity = returnUser[2],
-                                artistGender = returnUser[3],  artistBirth = returnUser[4], artistMusic = returnUser[5],
-                                 spotify_information=spotify_information, artist_video=artist_video) # render our data, and send it to the html file to display.\
-    
+
+        return render_template('artist.html', returnUser=returnUser, spotify_information=spotify_information,  artist_video=artist_video)  # render our data, and send it to the html file to display.\
+
     # if returnUser == None:
     #     return render_template('artist.html', artistName='No artist found.')
     # else:
     #     # render our data, and send it to the html file to display.
     #     return render_template('artist.html', artistName=returnUser)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

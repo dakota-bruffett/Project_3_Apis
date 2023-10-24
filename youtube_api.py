@@ -15,7 +15,7 @@ logging.basicConfig(#set up logging settings
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
-api_key = os.environ['YOUTUBE_API_KEY']
+api_key = os.environ.get('YOUTUBE_API_KEY')
 api_name = 'youtube'
 api_version = 'v3'
 
@@ -46,7 +46,7 @@ def get_youtube_videos(artist):
         print('The returned data is not in expected format.')
     except Exception as e:# Handle other unexpected exceptions
         logging.exception(e)
-        print('An uexpected error has occured.')
+        print('An unexpected error has occured.')
 
 def extract_video_info(response):
     five_video_list = []#create empty list to hold the five videos
