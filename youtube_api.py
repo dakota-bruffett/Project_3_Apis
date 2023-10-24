@@ -1,8 +1,12 @@
 from googleapiclient.discovery import build
 import os
 from pprint import pprint
+from dotenv import load_dotenv
 
-api_key = os.environ['YOUTUBE_API_KEY']
+
+load_dotenv()
+
+api_key = os.environ.get('YOUTUBE_API_KEY')
 api_name = 'youtube'
 api_version = 'v3'
 
@@ -40,7 +44,7 @@ def singer_video(artist):
             # drilling down to pull out the title and video id, and high thumbnail parameters
             title = item['snippet']['title']
             video_id = item['id']['videoId']
-            # could choose betweeen default, high, or medium thumnails, which differ in size and img quality.
+            # could choose between default, high, or medium thumbnails, which differ in size and img quality.
             high_height = item['snippet']['thumbnails']['high']['height']
             high_url = item['snippet']['thumbnails']['high']['url']
             high_width = item['snippet']['thumbnails']['high']['width']
@@ -50,7 +54,7 @@ def singer_video(artist):
                                     'url': high_url,
                                     'width': high_width})  # package these items into dictionaries and add them all to the list
         # pprint(five_video_list)#FOR (SOLO) TESTING
-        return five_video_list  # send back list of parameters to itentify videos
+        return five_video_list  # send back list of parameters to identify videos
 
     except:  # refine try-except later
         print('err')
