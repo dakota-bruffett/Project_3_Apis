@@ -197,14 +197,30 @@ main {
   border: 1px solid #353440;
   padding: 10px;
 }
-
-/* Make the scroll bars disappear for both sections */
-.scrollable-tracks::-webkit-scrollbar {
-  display: none;
+/* Scroll styles */
+.scrollable-tracks::-webkit-scrollbar,
+.scrollable-vids::-webkit-scrollbar {
+  width: 8px;
 }
 
-.scrollable-vids::-webkit-scrollbar {
-  display: none;
+.scrollable-tracks::-webkit-scrollbar-track,
+.scrollable-vids::-webkit-scrollbar-track {
+  background: transparent;
+  border: none;
+}
+
+/* Draggable scroll */
+.scrollable-tracks::-webkit-scrollbar-thumb,
+.scrollable-vids::-webkit-scrollbar-thumb {
+  background: rgba(70, 70, 70, 0.5);
+  border-radius: 4px;
+}
+
+/* Hover effect for scroll */
+.scrollable-tracks::-webkit-scrollbar-thumb:hover,
+.scrollable-vids::-webkit-scrollbar-thumb:hover {
+  background: rgba(94, 93, 93, 0.15);
+  border-radius: 2rem;
 }
 
 .scrollable-vids {
