@@ -3,12 +3,44 @@
   padding: 0;
 }
 
+/* Hide scrollbar */
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#submit-btn {
+  text-decoration: none;
+  color: darkblue;
+  background-color: #7c8ea6;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 2px solid black;
+  /* Transition effect */
+  transition: all 0.4s ease-in-out;
+}
+
+#submit-btn:hover {
+  background-color: ghostwhite;
+  color: black;
+  box-shadow: 0 0 10px black;
+}
+
+#submit-btn:before {
+  margin-right: 5px;
+}
+
 body {
   background-color: #1a1a3d;
 }
 
 .artist-body {
   background-color: #1a1a3d;
+}
+
+#artist-followers .Artist-Followers-Count {
+  white-space: nowrap;
 }
 
 header {
@@ -19,18 +51,62 @@ header {
   background-color: #7c8ea6;
 }
 
-.return-button{
-    text-decoration: none;
-    color: black;
+.btn-section {
+  padding-top: 2rem;
+}
+
+.return-button {
+  text-decoration: none;
+  color: darkblue;
+  background-color: #7c8ea6;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 2px solid black;
+  /* Transition effect */
+  transition: all 0.4s ease-in-out;
+}
+
+/* return btn hover effect */
+.return-button:hover {
+  background-color: ghostwhite;
+  color: black;
+  box-shadow: 0 0 10px black;
+}
+
+.return-button:before {
+  margin-right: 5px;
+}
+
+/* save btn */
+#save-btn {
+  text-decoration: none;
+  color: darkblue;
+  background-color: #7c8ea6;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 7px;
+  border: 2px solid black;
+  /* Transition effect */
+  transition: all 0.4s ease-in-out;
+}
+
+#save-btn:hover {
+  background-color: ghostwhite;
+  color: black;
+  box-shadow: 0 0 10px black;
+}
+
+#save-btn:before {
+  margin-right: 5px;
 }
 
 .list {
-    padding: 12px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    background-color: #7C8EA6;
-
+  padding: 12px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #7c8ea6;
 }
 
 .list {
@@ -52,7 +128,7 @@ main {
   padding: 19px;
 }
 
-.start-text{
+.start-text {
   color: bisque;
 }
 
@@ -61,13 +137,20 @@ main {
   border-radius: 50%;
   width: 100%;
   height: auto;
-  padding-top: 10px;
-  padding-right: 10px;
+  display: block;
+  margin: auto;
+  padding-top: 5px;
+  padding-right: 5px;
 }
 
 .artist-bio-section {
   padding-bottom: 2rem;
   background-color: bisque;
+}
+
+.album-col {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 #stage-name-text {
@@ -97,8 +180,110 @@ main {
   list-style-type: none;
 }
 
-
-.labels{
-    color:  #7C8EA6 ;
+/* Top tracks section */
+#top-tracks-text {
+  background-color: #1a1a3d;
+  color: whitesmoke;
 }
 
+#yt-text {
+  background-color: #1a1a3d;
+  color: whitesmoke;
+}
+
+.scrollable-tracks {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #353440;
+  padding: 10px;
+}
+
+/* Make the scroll bars disappear for both sections */
+.scrollable-tracks::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-vids::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-vids {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #353440;
+  padding: 10px;
+}
+
+.track-row {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #353440;
+  display: flex;
+  align-items: center;
+}
+
+.vid-row {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #353440;
+  display: flex;
+  align-items: center;
+}
+
+.top-tracks-section {
+  background-color: #1b2735;
+  padding-bottom: 2rem;
+}
+
+.yt-vids-section {
+  padding-top: 2rem;
+  background-color: #2a2a2a;
+}
+
+#top-tracks-img {
+  flex: 0 0 15rem;
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+#top-track-name,
+#link-yt-vid-text {
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds ... if name is long */
+  color: whitesmoke;
+  white-space: nowrap; /* Track name does not go to next line*/
+}
+
+#link-yt-vid-text a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+#link-yt-vid-text a:hover {
+  color: lightblue;
+}
+
+#yt-thumbnail {
+  flex: 0 0 15rem;
+  width: 100%;
+  max-width: 150%;
+  height: auto;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+#top-tracks-popularity {
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds ... if name is long */
+  color: whitesmoke;
+  white-space: nowrap;
+}
+
+.labels {
+  color: #7c8ea6;
+}

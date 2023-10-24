@@ -183,7 +183,9 @@ class Spotify_API:
 
             # Extracting artists' top tracks and their images
             artists_Top_Tracks = [
-                {'track_name': track['name'], 'image': track['album']
+                {'track_name': track['name'],
+                 'popularity':track['popularity'],
+                 'preview_link':track['preview_url'], 'image': track['album']
                     ['images'][0]['url'] if track['album']['images'] else None}
                 for track in top_Tracks if track.get('name')]
 
@@ -192,7 +194,7 @@ class Spotify_API:
                 'picture': artist_Picture,
                 'followers': artist_Followers,
                 'albums': list_Of_Artists_Albums,
-                'top tracks': artists_Top_Tracks,
+                'top_tracks': artists_Top_Tracks,
             }
             pprint(Spotify_Artist_Info)
 
