@@ -9,7 +9,6 @@ import logging
 
 
 # Logging set up
-logging.basicConfig(level=logging.ERROR)
 logging.basicConfig(level=logging.INFO)
 
 
@@ -37,8 +36,8 @@ class Spotify_API:
         self.refresh_Spotify_access_token()
 
         # Make sure you have both client id and secret id set up first. Logging should give corresponding key pair values if set up correctly for environment variables
-        logging.info(f"Client ID: {self.SPOTIFY_CLIENT_ID}")
-        logging.info(f"Secret ID: {self.SPOTIFY_CLIENT_SECRET}")
+        # logging.info(f"Client ID: {self.SPOTIFY_CLIENT_ID}")
+        # logging.info(f"Secret ID: {self.SPOTIFY_CLIENT_SECRET}")
 
     # # A new auth key is required every time after the key expires in 1 hour.
     # Need to send a request to spotify token end point to get a new access token and also providing necessary data to the URL such as client ID and secret key
