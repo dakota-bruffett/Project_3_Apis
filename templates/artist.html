@@ -17,8 +17,8 @@
         <h2 id="artist-real-name-text">
           <!-- This part is the Bio of the Artists -->
           <h1>Biography</h1>
-          <h3>This is your Artist's real name: <br>  <Strong>{{returnUser.name}}</Strong></h3>
-          <h3>Country:  {{returnUser.country}}</h3>
+          <h3>This is your Artist's real name: <br> <Strong>{{returnUser.name}}</Strong></h3>
+          <h3>Country: {{returnUser.country}}</h3>
           <h3>City: {{returnUser.city}}</h3>
           <h3>Gender: {{returnUser.gender}}</h3>
           <h3>Birthday: {{returnUser.birthday}}</h3>
@@ -33,18 +33,18 @@
         <img src="{{spotify_information.picture}}" alt="Artist Profile picture from spotify"
           class="artist-profile-picture" />
 
-            <h2 id="stage-name-text">
-    <!-- <h1>Here is the Artist Info</h1> -->
-    <!-- Stage Name -->
-    <strong class="Artist-stage-name" style="color: black">{{spotify_information.Name}}</strong>
-  </h2>
+        <h2 id="stage-name-text">
+          <!-- <h1>Here is the Artist Info</h1> -->
+          <!-- Stage Name -->
+          <strong class="Artist-stage-name" style="color: black">{{spotify_information.Name}}</strong>
+        </h2>
 
-  <!-- Followers -->
-  <h2 id="artist-followers">
-    <!-- <h1>Here is the Artist Info</h1> -->
-    <!-- Stage Name -->
-    <strong id="Artist-Followers-Count" style="color: black">{{spotify_information.followers}}</strong>
-  </h2>
+        <!-- Followers -->
+        <h2 id="artist-followers">
+          <!-- <h1>Here is the Artist Info</h1> -->
+          <!-- Stage Name -->
+          <strong id="Artist-Followers-Count" style="color: black">{{spotify_information.followers}}</strong>
+        </h2>
       </div>
 
     </div>
@@ -99,121 +99,123 @@
         </h2>
         <!-- Artists top tracks will be inside a scrollable feature -->
         <div class="scrollable-tracks">
-              {%for track in spotify_information.top_tracks%}
-              <div class="row track-row">
-                <!-- Track image -->
-                <div class="col-3">
-                  <img src="{{track.image}}" alt="{{track.track_name}}" class="top-tracks-img-thumbnail"
-                  id="top-tracks-img">
-                </div>
+          {%for track in spotify_information.top_tracks%}
+          <div class="row track-row">
+            <!-- Track image -->
+            <div class="col-3">
+              <img src="{{track.image}}" alt="{{track.track_name}}" class="top-tracks-img-thumbnail"
+                id="top-tracks-img">
+            </div>
 
-                <!-- Track name -->
-                <div class="col-9">
-                  <h5 id="top-track-name">
-                    {{track.track_name}}
-                  </h5>
-                  <h3 id="top-tracks-popularity">
-                    Popularity: {{track.popularity}}/100
-                  </h3>
+            <!-- Track name -->
+            <div class="col-9">
+              <h5 id="top-track-name">
+                {{track.track_name}}
+              </h5>
+              <h3 id="top-tracks-popularity">
+                Popularity: {{track.popularity}}/100
+              </h3>
 
-                  <!-- There is a nice preview link to demo one of their songs to hear, some are provided some are not -->
-                  {% if track.preview_link %}
-                  <h2 id="preview-link-url">
-                    
-                    <audio controls class="previewAudio">
-                      <source src="{{track.preview_link}}" type="audio/mpeg">
-                      Unfortunately, your browser does not support the audio element. Otherwise, here is the link to preview! <a href="{{track.preview_link}}" target="_blank">▶️</a
-                    </audio>
-                    
-                    
-                  </h2>
-                
+              <!-- There is a nice preview link to demo one of their songs to hear, some are provided some are not -->
+              {% if track.preview_link %}
+              <h2 id="preview-link-url">
 
-                  {% endif %}
-                 
-          
-                </div>
-              </div>
-              {% endfor %}
+                <audio controls class="previewAudio">
+                  <source src="{{track.preview_link}}" type="audio/mpeg">
+                  Unfortunately, your browser does not support the audio element. Otherwise, here is the link to
+                  preview! <a href="{{track.preview_link}}" target="_blank">▶️</a </audio>
+
+
+              </h2>
+
+
+              {% endif %}
+
+
+            </div>
+          </div>
+          {% endfor %}
         </div>
-    
 
-    </div>
 
-    <!-- Artist Related YT Vids (reusing same class names and styles due to short time)  -->
+      </div>
 
-  <div class="artists-vids">
-      <div class="container-fluid yt-vids-section">
-        <h2 id="yt-text">
-          Artist's Related YouTube Videos
-        </h2>
-        <!-- Artists vids will be inside a scrollable feature -->
-        <div class="scrollable-vids">
-                  <!--Displaying the 20 thumbnails and their video links in the titles-->     
-        {% for video in artist_video %}<!--Looping over the list of dictionaries from API-->
-        
-              <div class="row vid-row">
-                <!-- vid image -->
-                <div class="col-3">
-               <a>
-          <img class = "top-tracks-img" src="{{video.url}}" id="yt-thumbnail">
-          <!--creating the thumbnail using parameters from the API-->
-        </a>
-                </div>
+      <!-- Artist Related YT Vids (reusing same class names and styles due to short time)  -->
 
-                <!-- vid name -->
-                <div class="col-9">
-                     <h4 id="link-yt-vid-text"><a href="https://www.youtube.com/watch?v={{video.video_id}}" target="_blank">{{video.title}}</a></h4><!--watch is keyword indicating video to play, ? is separator, v= is to specify videoId-->
-                </div>
+      <div class="artists-vids">
+        <div class="container-fluid yt-vids-section">
+          <h2 id="yt-text">
+            Artist's Related YouTube Videos
+          </h2>
+          <!-- Artists vids will be inside a scrollable feature -->
+          <div class="scrollable-vids">
+            <!--Displaying the 20 thumbnails and their video links in the titles-->
+            {% for video in artist_video %}<!--Looping over the list of dictionaries from API-->
+
+            <div class="row vid-row">
+              <!-- vid image -->
+              <div class="col-3">
+                <a>
+                  <img class="top-tracks-img" src="{{video.url}}" id="yt-thumbnail">
+                  <!--creating the thumbnail using parameters from the API-->
+                </a>
               </div>
-              {% endfor %}
+
+              <!-- vid name -->
+              <div class="col-9">
+                <h4 id="link-yt-vid-text"><a href="https://www.youtube.com/watch?v={{video.video_id}}"
+                    target="_blank">{{video.title}}</a></h4>
+                <!--watch is keyword indicating video to play, ? is separator, v= is to specify videoId-->
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+
         </div>
-    
 
-    </div>
+        <div class="btn-section">
+          <!-- Here we have a a btn that will return our used to the main page to search again. -->
+          <button class="btn waves-effect waves-light"> <a class="return-button" href="/">Return to Main Page</a>
+          </button>
+          <!-- This btn will save the artist in our DB -->
+          <button class="btn waves-effect waves-light" id="save-btn" type="submit" name="action">Save Artist
+          </button>
+        </div>
 
-    <div class="btn-section">
-    <!-- Here we have a a btn that will return our used to the main page to search again. -->
-    <button class="btn waves-effect waves-light"> <a class="return-button" href="/">Return to Main Page</a>
-    </button>
-    <!-- This btn will save the artist in our DB -->
-    <button class="btn waves-effect waves-light" id = "save-btn" type="submit" name="action">Save Artist
-    </button>
-    </div>
+        <!-- Preview audio level in js, and followers count commas added scripts -->
 
-    <!-- Preview audio level in js, and followers count commas added scripts -->
+        <script>
+          // Grab followers count from Jinja2 format
+          let followerElement = document.getElementById('Artist-Followers-Count');
 
-    <script>
-    // Grab followers count from Jinja2 format
-    let followerElement = document.getElementById('Artist-Followers-Count');
+          // Fetch the followers count from the strong tag and make it an integer, since strong tag is tech only a string value
+          // 10 is radix base parameter for the standard number system we use (0-9). This is  for JS engine to interpret and in case the string starts with 056788...
+          // https://en.wikipedia.org/wiki/Radix
+          let followers = parseInt(followerElement.textContent.trim(), 10);
 
-      // Fetch the followers count from the strong tag and make it an integer, since strong tag is tech only a string value
-      // 10 is radix base parameter for the standard number system we use (0-9). This is  for JS engine to interpret and in case the string starts with 056788...
-      // https://en.wikipedia.org/wiki/Radix
-    let followers = parseInt(followerElement.textContent.trim(),10);
+          // Format the followers count with comma separators
+          let formattedFollowers = followers.toLocaleString('en-US');
+          // setting the count to text content
+          document.getElementById('Artist-Followers-Count').textContent = formattedFollowers + " Spotify Followers";
 
-    // Format the followers count with comma separators
-    let formattedFollowers = followers.toLocaleString('en-US');
-     // setting the count to text content
-    document.getElementById('Artist-Followers-Count').textContent = formattedFollowers + " Spotify Followers";
 
- 
-    // Can edit audio controls and settings for audio preview on loaded DOM-
-      document.addEventListener('DOMContentLoaded', function () {
-        var audioElementSupport = document.querySelectorAll('.previewAudio')
-        
-        if(audioElementSupport) {
+          // Can edit audio controls and settings for audio preview on loaded DOM-
+          document.addEventListener('DOMContentLoaded', function () {
+            var audioElementSupport = document.querySelectorAll('.previewAudio')
 
-          audioElementSupport.forEach(function (audioElement) {
-            // All Volume element is halfway turned when audio sample is displayed
-             audioElement.volume = 0.5 
+            if (audioElementSupport) {
+
+              audioElementSupport.forEach(function (audioElement) {
+                // All Volume element is halfway turned when audio sample is displayed
+                audioElement.volume = 0.5
+              })
+
+
+            }
           })
-          
-         
-        }
-      })
 
-    </script>
+        </script>
 
 </main>
 
