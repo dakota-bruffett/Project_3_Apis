@@ -57,7 +57,7 @@ def extract_video_info(response):
         high_url = item['snippet']['thumbnails']['high']['url']#could choose betweeen default, high, or medium thumnails, which differ in size and img quality.
         twenty_video_list.append({'title': title, 
                                 'video_id': video_id, 
-                                'url': high_url,})#package these items into dictionaries and add them all to the list 
+                                'url': high_url})#package these items into dictionaries and add them all to the list 
         pprint(twenty_video_list)#FOR (SOLO) TESTING
     return twenty_video_list
 
