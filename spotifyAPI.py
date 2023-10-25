@@ -102,7 +102,7 @@ class Spotify_API:
     def get_Artist(self, artist_Name):
 
         # Check if token expired (Over time limit), then get a new access token before using access token to call Artist data
-        if self.token_expiration:
+        if self.check_token_expiration():
             self.refresh_Spotify_access_token()
 
         headers = self.get_headers()
