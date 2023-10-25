@@ -32,8 +32,8 @@ def get_youtube_videos(artist):
             safeSearch='moderate'#string, could be moderate, strict, or none
         )#no .execute() here?
         response = request.execute()#response will be the json turned into a python dictionary?
-        pprint(response)#FOR (SOLO) TESTING
-        print('---------------')#FOR (SOLO) TESTING
+        # pprint(response)#FOR (SOLO) TESTING
+        # print('---------------')#FOR (SOLO) TESTING
         twenty_video_list = extract_video_info(response)#send the json to function for parsing
         
         return twenty_video_list#send back list of parameters to identify videos
@@ -58,7 +58,7 @@ def extract_video_info(response):
         twenty_video_list.append({'title': title, 
                                 'video_id': video_id, 
                                 'url': high_url})#package these items into dictionaries and add them all to the list 
-        pprint(twenty_video_list)#FOR (SOLO) TESTING
+        # pprint(twenty_video_list)#FOR (SOLO) TESTING
     return twenty_video_list
 
 if __name__ == '__main__':#allows module to be run solo
