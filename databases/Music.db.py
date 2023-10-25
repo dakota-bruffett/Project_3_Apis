@@ -32,19 +32,19 @@ for row in conn.execute('select * From Music data'):
 @app.route('/', methods=['GET'])
 def records():
     """Create a user via query string parameters."""
-    username = request.args.get('user')
-    email = request.args.get('email')
-    if username and email:
+    song = request.args.get('Song')
+    artist = request.args.get('artist')
+    if song and artist:
         existing_user = User.query.filter(
-            User.username == username or User.email == email
+            User.username == song or User.email == artist
         ).first()
         if existing_user:
             return make_response(
-                f'{username} ({email}) already created!'
+                f'{artist} ({song}) already created!'
             )
         new_user = User(
-            username=username,
-            email=email,
+            Song=song,
+            Artist=artist,
         )
        # Create an instance of the User class
         db.session.add(new_user)  # Adds new User record to database
