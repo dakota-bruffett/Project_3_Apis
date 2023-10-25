@@ -4,7 +4,7 @@ from pprint import pprint
 # Create out empty list 
 BioList = []
 listKeys = ['name','country','city','gender','birthday','music']
-NoInfo = ['not found','not found','not found','not found','not found','not found']
+NoInfo = ['not data','not data','not data','not data','not data','not data']
 # Our main method will call the other methods, and will return all the info that we required.
 def main(name):
     infoReturn = get_Artist(name)
@@ -23,7 +23,7 @@ def get_Artist(artistName):
     try:
         responseArtist = requests.get(searchArt).json()
         tryGetNameArtist = responseArtist['artists'][0]['aliases'][0]['sort-name'] # try to get an Artist from the data. if not we retunr the error.
-
+        Artist_country = responseArtist['artists'][0]['area']['name']
         return responseArtist
     # if artist is not found, we will send an excepction and return None
     except Exception as exc:
