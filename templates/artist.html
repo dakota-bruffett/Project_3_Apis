@@ -17,7 +17,7 @@
         <h2 id="artist-real-name-text">
           <!-- This part is the Bio of the Artists -->
           <h1>Biography</h1>
-          <h3>This is your Artist's real name: <br>  <Strong>{{returnUser.name}}</Strong></h3>
+          <h3 name="artist-name">This is your Artist's real name: <br>  <Strong>{{returnUser.name}}</Strong></h3>
           <h3>Country:  {{returnUser.country}}</h3>
           <h3>City: {{returnUser.city}}</h3>
           <h3>Gender: {{returnUser.gender}}</h3>
@@ -173,12 +173,24 @@
     </div>
 
     <div class="btn-section">
-    <!-- Here we have a a btn that will return our used to the main page to search again. -->
-    <button class="btn waves-effect waves-light"> <a class="return-button" href="/">Return to Main Page</a>
-    </button>
-    <!-- This btn will save the artist in our DB -->
-    <button class="btn waves-effect waves-light" id = "save-btn" type="submit" name="action">Save Artist
-    </button>
+      <!-- Here we have a a btn that will return our used to the main page to search again. -->
+      <button class="btn waves-effect waves-light"> <a class="return-button" href="/">Return to Main Page</a>
+      </button>
+      <!-- This btn will save the artist in our DB -->
+      <div class="getData">
+        <form method="POST" action="get_artist">
+          <button
+            class="btn waves-effect waves-light"
+            type="submit"
+            id="submit-btn"
+            name="action"
+          >
+            Save Artist
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+
     </div>
 
     <!-- Preview audio level in js, and followers count commas added scripts -->

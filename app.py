@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request
 import requests
 from artistAPI import main as req_musicbrainz_info
-
 from spotifyAPI import get_spotify_artist_info
-
 from youtube_api import get_youtube_videos
 
+import sqlite3
+import os
+
 app = Flask(__name__)
+
+currentDir = os.path.dirname(os.path.abspath(__file__))
 
 
 @app.route('/')  # home page
@@ -14,15 +17,26 @@ def homepage():
     return render_template('index.html')
 
 
-@app.route('/save', methods=['POST'])
+@app.route('/', methods=['POST'])
 def save_data():
-    data = request.get_json()
-    print(data)
-    value = "{{Music.data}}"
-    name = "Music.db"
-    value = request.form.get('Music.db')
-    return 'saved'
+    data = request.args.get('artist-name')
+    connection = sqlite3.connect(currentDir + '\databases\Music_data.sqlite')
+    cursor = connection.cursor()
+    cursor.execute(f'INSERT INTO ArtistInfo VALUES(?,?,?,?)',('cris','ecu','azogues', 'male'))
+    connection.commit()
 
+@app.route('/artistsave', methods=['GET'])
+def resultpage():
+    try: 
+        if request.method == 'GET':
+            name = request.args.get('diplayName')
+            connection = sqlite3.connect(currentDir + '\databases\Music_data.sqlite')
+            cursor = connection.cursor()
+            result = cursor.execute('SELECT * FROM ArtistInfo FROM Music_data')
+            result =result.fetchall()[0]
+            return render_template('saveArtist.html', returnArtist=result)
+    except:
+        return render_template ('saveArtist.html' , returnArtist = '')
 
 @app.route('/get_artist')  # will get the artist info from the API
 def get_artist_info_route():
