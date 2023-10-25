@@ -29,7 +29,7 @@ browser access
 WebStorm version== 3.12
 google-api-python-client==1.6.5
 Song of choice
-artest of choice\
+artist of choice
 ----------------------------------
 Package                  Version
 ------------------------ ---------
@@ -42,8 +42,9 @@ google-auth-oauthlib     1.1.0
 googleapis-common-protos 1.61.0
 httplib2                 0.22.0
 requests                 2.31.0
+python-dotenv            1.0.0
 ---------------------------------
-Additionaly you will need API keys for 
+additionally you will need API keys for 
 SpotifyAPI
 YouTubeAPI
 
