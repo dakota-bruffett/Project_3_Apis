@@ -32,8 +32,8 @@ for row in conn.execute('select * From Music data'):
 @app.route('/', methods=['GET'])
 def records():
     """Create a user via query string parameters."""
-    song = request.args.get('user')
-    artist = request.args.get('email')
+    song = request.args.get('Song')
+    artist = request.args.get('artist')
     if song and artist:
         existing_user = User.query.filter(
             User.username == song or User.email == artist
